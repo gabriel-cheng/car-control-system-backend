@@ -54,11 +54,11 @@ public class ClientController {
     @GetMapping("/{id}")
     public ResponseEntity<Client> getOneClient(@PathVariable String id)
         throws ResourceNotFoundException {
-        Client clientFound = clientRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("User " + id + " not found!"));
-
-        return ResponseEntity.status(HttpStatus.OK)
-            .body(clientFound);
+        return ResponseHelper.getOneEntity(
+            id,
+            clientRepository::findById,
+            "Client"
+        );
     }
 
     @PostMapping

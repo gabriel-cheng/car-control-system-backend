@@ -7,5 +7,6 @@ public record RequestClient(
     String surname,
     String email,
     String address,
-    List<String> phone
+    List<String> phone,
+    List<String> vehicle
 ) { }

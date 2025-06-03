@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.carControlSystem.domain.phone.Phone;
+import com.example.carControlSystem.domain.vehicle.Vehicle;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -44,6 +45,10 @@ public class Client {
     @JsonIgnoreProperties({"phoneId", "client"})
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Phone> phone = new ArrayList<>();
+
+    @JsonIgnoreProperties({"client"})
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vehicle> vehicle = new ArrayList<>();
 
     public Client(RequestClient requestClient) {
         this.firstname = requestClient.firstname();
