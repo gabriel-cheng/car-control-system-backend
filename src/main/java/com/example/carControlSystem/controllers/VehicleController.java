@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.carControlSystem.domain.client.Client;
 import com.example.carControlSystem.domain.client.ClientRepository;
-import com.example.carControlSystem.domain.client.RequestClient;
 import com.example.carControlSystem.domain.vehicle.RequestVehicle;
 import com.example.carControlSystem.domain.vehicle.Vehicle;
 import com.example.carControlSystem.domain.vehicle.VehicleRepository;
@@ -24,6 +24,7 @@ import com.example.carControlSystem.exceptions.ItemAlreadyExistsException;
 import com.example.carControlSystem.exceptions.ResourceCannotBeNullException;
 import com.example.carControlSystem.exceptions.ResourceNotFoundException;
 import com.example.carControlSystem.helpers.ResponseHelper;
+import com.example.carControlSystem.services.VehicleService;
 
 @RestController
 @RequestMapping("/vehicle")
@@ -34,6 +35,9 @@ public class VehicleController {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private VehicleService vehicleService;
 
     @GetMapping
     public ResponseEntity<List<Vehicle>> getAllVehicles() {
@@ -73,7 +77,17 @@ public class VehicleController {
 
         return ResponseEntity.status(HttpStatus.OK)
             .body("Vehicle registered successfully!");
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateOneVehicle(
+        @PathVariable String id,
+        @RequestBody @Validated RequestVehicle vehicle
+    ) throws ResourceNotFoundException {
+        vehicleService.updateVehicle(id, vehicle);
+
+        return ResponseEntity.status(HttpStatus.OK)
+            .body("Vehicle updated successfully!");
     }
 
     @DeleteMapping("/{id}")

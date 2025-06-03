@@ -31,17 +31,14 @@ import com.example.carControlSystem.services.ClientService;
 @RequestMapping("/client")
 public class ClientController {
 
-    private final ClientService clientService;
+    @Autowired
+    private ClientService clientService;
     
     @Autowired
     private ClientRepository clientRepository;
 
     @Autowired
     private PhoneRepository phoneRepository;
-
-    public ClientController(ClientService clientService) {
-        this.clientService = clientService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {
