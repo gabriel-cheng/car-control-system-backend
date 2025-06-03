@@ -3,7 +3,6 @@ package com.example.carControlSystem.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -31,14 +30,21 @@ import com.example.carControlSystem.services.ClientService;
 @RequestMapping("/client")
 public class ClientController {
 
-    @Autowired
-    private ClientService clientService;
+    private final ClientService clientService;
     
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
-    @Autowired
-    private PhoneRepository phoneRepository;
+    private final PhoneRepository phoneRepository;
+
+    public ClientController(
+        ClientService clientService,
+        ClientRepository clientRepository,
+        PhoneRepository phoneRepository
+    ) {
+        this.clientService = clientService;
+        this.clientRepository = clientRepository;
+        this.phoneRepository = phoneRepository;
+    }
 
     @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {

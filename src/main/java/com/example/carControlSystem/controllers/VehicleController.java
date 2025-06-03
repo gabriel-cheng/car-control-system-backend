@@ -2,7 +2,6 @@ package com.example.carControlSystem.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -30,14 +29,21 @@ import com.example.carControlSystem.services.VehicleService;
 @RequestMapping("/vehicle")
 public class VehicleController {
     
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
-    @Autowired
-    private VehicleService vehicleService;
+    private final VehicleService vehicleService;
+
+    public VehicleController(
+        VehicleRepository vehicleRepository,
+        ClientRepository clientRepository,
+        VehicleService vehicleService
+    ) {
+        this.vehicleRepository = vehicleRepository;
+        this.clientRepository = clientRepository;
+        this.vehicleService = vehicleService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Vehicle>> getAllVehicles() {

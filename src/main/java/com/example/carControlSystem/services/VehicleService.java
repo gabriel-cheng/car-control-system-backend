@@ -15,6 +15,7 @@ import jakarta.transaction.Transactional;
 public class VehicleService {
     
     private final VehicleRepository vehicleRepository;
+    
     private final ClientRepository clientRepository;
 
     public VehicleService(
