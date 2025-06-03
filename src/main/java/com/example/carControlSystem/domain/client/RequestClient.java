@@ -2,11 +2,10 @@ package com.example.carControlSystem.domain.client;
 
 import java.util.List;
 
-import com.example.carControlSystem.domain.phone.Phone;
-
 public record RequestClient(
-    String name,
+    String firstname,
+    String surname,
     String email,
     String address,
-    List<Phone> phone
+    List<String> phone
 ) { }

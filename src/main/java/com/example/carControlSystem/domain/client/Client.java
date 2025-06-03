@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.carControlSystem.domain.phone.Phone;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -32,17 +33,21 @@ public class Client {
     @Column(name="client_id")
     private String clientId;
 
-    private String name;
+    private String firstname;
+
+    private String surname;
 
     private String email;
 
     private String address;
 
+    @JsonIgnoreProperties({"phoneId", "client"})
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Phone> phone = new ArrayList<>();
 
     public Client(RequestClient requestClient) {
-        this.name = requestClient.name();
+        this.firstname = requestClient.firstname();
+        this.surname = requestClient.surname();
         this.email = requestClient.email();
         this.address = requestClient.address();
     }
