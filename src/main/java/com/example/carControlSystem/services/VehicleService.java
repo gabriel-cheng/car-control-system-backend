@@ -15,7 +15,7 @@ import jakarta.transaction.Transactional;
 public class VehicleService {
     
     private final VehicleRepository vehicleRepository;
-    
+
     private final ClientRepository clientRepository;
 
     public VehicleService(
@@ -31,7 +31,7 @@ public class VehicleService {
        throws ResourceNotFoundException {
         Vehicle vehicleFound = vehicleRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException(
-                "The vehicle with license plate " + vehicle.plate() + " not found!"
+                "The vehicle " + id + " not found!"
             ));
 
         vehicleFound.setDescription(vehicle.description());

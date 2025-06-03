@@ -10,7 +10,6 @@ import com.example.carControlSystem.domain.client.ClientRepository;
 import com.example.carControlSystem.domain.client.RequestClient;
 import com.example.carControlSystem.domain.phone.Phone;
 import com.example.carControlSystem.domain.phone.PhoneRepository;
-import com.example.carControlSystem.domain.vehicle.VehicleRepository;
 import com.example.carControlSystem.exceptions.ItemAlreadyExistsException;
 import com.example.carControlSystem.exceptions.ResourceNotFoundException;
 
@@ -23,16 +22,12 @@ public class ClientService {
 
     private final PhoneRepository phoneRepository;
 
-    private final VehicleRepository vehicleRepository;
-
     public ClientService(
         ClientRepository clientRepository,
-        PhoneRepository phoneRepository,
-        VehicleRepository vehicleRepository
+        PhoneRepository phoneRepository
     ) {
         this.clientRepository = clientRepository;
         this.phoneRepository = phoneRepository;
-        this.vehicleRepository = vehicleRepository;
     }
 
     @Transactional
@@ -59,8 +54,6 @@ public class ClientService {
 
                 return p;
             }).collect(Collectors.toList());
-
-        
 
         existingClient.setFirstname(client.firstname());
         existingClient.setSurname(client.surname());
