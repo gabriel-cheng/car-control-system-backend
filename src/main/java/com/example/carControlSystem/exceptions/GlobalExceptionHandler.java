@@ -26,4 +26,10 @@ public class GlobalExceptionHandler {
             .body(ex.getMessage());
     }
 
+    @ExceptionHandler(ResourceCannotBeNullException.class)
+    public ResponseEntity<String> handleResourceCannotBeNullException(ResourceCannotBeNullException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(ex.getMessage());
+    }
+
 }
