@@ -10,11 +10,11 @@
 
 • POST/PUT exemplo de corpo de requisição:
 {
-	"firstname": "your_firstname",
-	"surname": "your_surname",
-	"email": "your_email_address",
-    	"address": "your_residence_address",
-	"phone": ["phone_number_1", "phone_number_2", ...]
+    "firstname": "your_firstname",
+    "surname": "your_surname",
+    "email": "your_email_address",
+    "address": "your_residence_address",
+    "phone": ["phone_number_1", "phone_number_2", ...]
 }
 ```
 
