@@ -78,6 +78,7 @@ public class VehicleController {
 
         Vehicle newVehicle = new Vehicle(vehicle);
         newVehicle.setClient(clientFound);
+        newVehicle.setPlate(vehicle.plate().toUpperCase());
 
         vehicleRepository.save(newVehicle);
 

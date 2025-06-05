@@ -35,7 +35,7 @@ public class VehicleService {
             ));
 
         vehicleFound.setDescription(vehicle.description());
-        vehicleFound.setPlate(vehicle.plate());
+        vehicleFound.setPlate(vehicle.plate().toUpperCase());
         vehicleFound.setBrand(vehicle.brand());
         vehicleFound.setModel(vehicle.model());
         vehicleFound.setColor(vehicle.color());
